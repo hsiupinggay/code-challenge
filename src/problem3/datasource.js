@@ -1,6 +1,8 @@
-const axios = require('axios');
-
 class DataSource {
+  constructor() {
+    this.url = 'https://static.ngnrs.io/test/prices';
+  }
+
   /**
    * retrieves price data from 'https://static.ngnrs.io/test/prices'
    * @returns {Array} Each element in the array is an object with the following keys
@@ -9,8 +11,9 @@ class DataSource {
    */
   async getPrices() {
     try {
-      const res = await axios.get('https://static.ngnrs.io/test/prices');
-      const { prices } = res.data.data;
+      const res = await fetch(this.url);
+      const { data } = await res.json();
+      const { prices } = data;
 
       prices.forEach((price) => {
         price.mid = function () {
@@ -28,7 +31,7 @@ class DataSource {
     }
   }
 }
-
+// this is how the class needs to be used
 const ds = new DataSource();
 ds.getPrices().then((prices) => {
   prices.forEach((price) => {
