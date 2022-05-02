@@ -1,0 +1,3 @@
+Questions:
+1. how many transactions do you need to broadcast in a day?
+2. why do transactions fail? We probably need to check whether or not the transaction was properly validated, if it had the right signature etc. If the transaction is valid and has failed more than once (or a certain predetermined number of times) we might need to consider if it makes sense to increase the gas fee so that it is more likely that the transaction would go through.
